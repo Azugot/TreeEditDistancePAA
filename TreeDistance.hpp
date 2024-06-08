@@ -109,7 +109,7 @@ public:
      * @param tree2 The second tree.
      * @return The tree edit distance between the two trees.
      */
-    int compute(LabelTree &tree1, LabelTree &tree2)
+    int calculateTreeDistance(LabelTree &tree1, LabelTree &tree2)
     {
         return treeEditDist(tree1.getRoot(), tree2.getRoot());
     }

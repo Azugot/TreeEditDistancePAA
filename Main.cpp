@@ -19,7 +19,7 @@ int main()
 
     // Create TreeEditDistance object
     TreeEditDistance ted;
-    int distance = ted.compute(tree1, tree2);
+    int distance = ted.calculateTreeDistance(tree1, tree2);
     cout << "Tree Edit Distance: " << distance << endl;
     return 0;
 }
