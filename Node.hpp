@@ -1,3 +1,6 @@
+#ifndef Node_hpp
+#define Node_hpp
+
 #include <vector>
 #include <string>
 
@@ -58,3 +61,5 @@ public:
         return children;
     }
 };
+
+#endif

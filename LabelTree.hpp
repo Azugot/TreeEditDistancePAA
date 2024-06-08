@@ -1,3 +1,7 @@
+#ifndef LabelTree_hpp
+#define LabelTree_hpp
+
+
 #include <String>
 #include "Node.hpp"
 #include <iostream>
@@ -10,11 +14,27 @@ private:
     Node *root;
 
 public:
+    /**
+     * @brief Constructs a new LabelTree object with the given name.
+     *
+     * @param name The name of the LabelTree.
+     */
     LabelTree(string name)
     {
         this->name = name;
         this->root = new Node();
     }
+
+    /**
+     * Returns the root node of the tree.
+     *
+     * @return A pointer to the root node of the tree.
+     */
+    Node *getRoot() const
+    {
+        return root;
+    }
+
     /**
      * Adds a new node to the tree with the specified parent and child labels.
      * If the parent node is not found, an error message is displayed and the function returns.
@@ -60,7 +80,7 @@ public:
 
     /**
      * Prints the labels of the tree nodes in a hierarchical structure.
-     * 
+     *
      * @param node The root node of the tree to be printed.
      * @param depth The current depth of the node in the tree (default is 0).
      */
@@ -77,3 +97,5 @@ public:
         }
     }
 };
+
+#endif
