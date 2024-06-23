@@ -29,8 +29,14 @@ private:
         if (!T2)
             return getSubtreeSize(T1);
 
-        int n1 = getSubtreeSize(T1);
-        int n2 = getSubtreeSize(T2);
+        vector<Node *> T1_nodes = getPostOrderNodes(T1);
+
+        vector<Node *> T2_nodes = getPostOrderNodes(T2);
+
+        int n1 = T1_nodes.size();
+        int n2 = T2_nodes.size();
+
+        // cout << "n1: " << n1 << " n2: " << n2 << endl;
 
         vector<vector<int>> dp(n1 + 1, vector<int>(n2 + 1, 0));
 
@@ -39,8 +45,20 @@ private:
         for (int j = 1; j <= n2; ++j)
             dp[0][j] = dp[0][j - 1] + 1;
 
-        vector<Node *> T1_nodes = getPostOrderNodes(T1);
-        vector<Node *> T2_nodes = getPostOrderNodes(T2);
+        // Debugging: Print post-order node labels
+        // cout << "T1 post-order: ";
+        // for (auto node : T1_nodes)
+        //{
+        //    cout << node->getLabel() << " ";
+        //}
+        // cout << endl;
+        //
+        // cout << "T2 post-order: ";
+        // for (auto node : T2_nodes)
+        //{
+        //    cout << node->getLabel() << " ";
+        //}
+        // cout << endl;
 
         for (int i = 1; i <= n1; ++i)
         {
@@ -51,6 +69,17 @@ private:
             }
         }
 
+        // Debugging: Print DP table
+        // cout << "DP table:" << endl;
+        // for (int i = 0; i <= n1; ++i)
+        //{
+        //    for (int j = 0; j <= n2; ++j)
+        //    {
+        //        cout << dp[i][j] << " ";
+        //    }
+        //    cout << endl;
+        //}
+        //
         return dp[n1][n2];
     }
 

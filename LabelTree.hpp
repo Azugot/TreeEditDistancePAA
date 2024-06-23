@@ -1,7 +1,6 @@
 #ifndef LabelTree_hpp
 #define LabelTree_hpp
 
-
 #include <String>
 #include "Node.hpp"
 #include <iostream>
@@ -33,6 +32,24 @@ public:
     Node *getRoot() const
     {
         return root;
+    }
+
+    /**
+     * Sets the root node of the tree.
+     *
+     * @param root A pointer to the root node.
+     */
+    void setRoot(Node *root)
+    {
+        this->root = root;
+    }
+
+    /**
+     * @brief Resets the tree by creating a new root node.
+     */
+    void resetTree()
+    {
+        root = new Node();
     }
 
     /**
