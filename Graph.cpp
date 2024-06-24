@@ -1,4 +1,5 @@
 #include "Graph.hpp"
+using namespace std;
 
 // Constructor
 Graph::Graph(int vertices) : vertices(vertices)
@@ -19,7 +20,7 @@ int Graph::getVertices() const
 }
 
 // Get the edges
-const std::list<std::pair<int, double>> &Graph::getEdges(int u) const
+const list<pair<int, double>> &Graph::getEdges(int u) const
 {
     return adjacencyList[u];
 }
@@ -29,11 +30,11 @@ void Graph::printGraph() const
 {
     for (int u = 0; u < vertices; ++u)
     {
-        std::cout << "Vertex " << u << ":";
+        cout << "Vertex " << u << ":";
         for (const auto &edge : adjacencyList[u])
         {
-            std::cout << " -> (" << edge.first << ", " << edge.second << ")";
+            cout << " -> (" << edge.first << ", " << edge.second << ")";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }

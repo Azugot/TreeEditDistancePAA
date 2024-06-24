@@ -5,7 +5,9 @@
 #include <vector>
 #include <unordered_map>
 #include <list>
-#include <utility> // for std::pair
+#include <utility> // for pair
+
+using namespace std;
 
 class Graph
 {
@@ -20,14 +22,14 @@ public:
     int getVertices() const;
 
     // Get the edges
-    const std::list<std::pair<int, double>> &getEdges(int u) const;
+    const list<pair<int, double>> &getEdges(int u) const;
 
     // Print the graph
     void printGraph() const;
 
 private:
     int vertices;
-    std::vector<std::list<std::pair<int, double>>> adjacencyList;
+    vector<list<pair<int, double>>> adjacencyList;
 };
 
 #endif
