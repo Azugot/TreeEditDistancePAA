@@ -3,6 +3,7 @@
 #ifndef TreeDistance_hpp
 #define TreeDistance_hpp
 
+#include <chrono>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -22,8 +23,10 @@ private:
      * @param T2 Pointer to the root node of the second tree.
      * @return The tree edit distance between the two trees.
      */
+
     int treeEditDist(Node *T1, Node *T2)
     {
+        auto start = chrono::high_resolution_clock::now();
         if (!T1)
             return getSubtreeSize(T2);
         if (!T2)
@@ -46,19 +49,19 @@ private:
             dp[0][j] = dp[0][j - 1] + 1;
 
         // Debugging: Print post-order node labels
-        // cout << "T1 post-order: ";
-        // for (auto node : T1_nodes)
-        //{
-        //    cout << node->getLabel() << " ";
-        //}
-        // cout << endl;
-        //
-        // cout << "T2 post-order: ";
-        // for (auto node : T2_nodes)
-        //{
-        //    cout << node->getLabel() << " ";
-        //}
-        // cout << endl;
+        cout << "T1 post-order: ";
+        for (auto node : T1_nodes)
+        {
+            cout << node->getLabel() << " ";
+        }
+        cout << endl;
+
+        cout << "T2 post-order: ";
+        for (auto node : T2_nodes)
+        {
+            cout << node->getLabel() << " ";
+        }
+        cout << endl;
 
         for (int i = 1; i <= n1; ++i)
         {
@@ -80,6 +83,14 @@ private:
         //    cout << endl;
         //}
         //
+
+        // Stop the clock
+        chrono::high_resolution_clock::time_point end = chrono::high_resolution_clock::now();
+
+        // Calculate duration
+        chrono::milliseconds duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+
+        cout << "Execution time: " << duration.count() << " milliseconds" << endl;
         return dp[n1][n2];
     }
 

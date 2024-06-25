@@ -35,6 +35,9 @@ public:
             cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
                  << endl;
         }
+
+        tree1.resetTree();
+        tree2.resetTree();
     }
 
     void runTreeSamples()
@@ -56,29 +59,7 @@ public:
         tree2.addNode("A", "E");
         tree2.addNode("E", "C");
         tree2.addNode("E", "D");
-
         verify(tree1, tree2, 4);
-        tree1.resetTree();
-        tree2.resetTree();
-
-        // Test Case 2
-        // Tree2 2
-        LabelTree tree3("Tree3");
-        tree3.addNode("", "X");
-        tree3.addNode("X", "Y");
-        tree3.addNode("X", "Z");
-        tree3.addNode("Y", "A");
-        tree3.addNode("Z", "B");
-
-        LabelTree tree4("Tree4");
-        tree4.addNode("", "X");
-        tree4.addNode("X", "Y");
-        tree4.addNode("X", "B");
-        tree4.addNode("Y", "A");
-        tree4.addNode("B", "Z");
-        verify(tree3, tree4, 2);
-        tree3.resetTree();
-        tree4.resetTree();
 
         // Test Case 3
         // Tree3 4
@@ -100,8 +81,6 @@ public:
         tree6.addNode("Q", "S");
         tree6.addNode("R", "O");
         verify(tree5, tree6, 4);
-        tree5.resetTree();
-        tree6.resetTree();
 
         // Test Case 4
         // Tree4 2
@@ -119,27 +98,6 @@ public:
         tree8.addNode("I", "H");
         tree8.addNode("H", "J");
         verify(tree7, tree8, 3);
-        tree7.resetTree();
-        tree8.resetTree();
-
-        // Test Case 5
-        // Tree5 3
-        LabelTree tree9("Tree9");
-        tree9.addNode("", "K");
-        tree9.addNode("K", "L");
-        tree9.addNode("K", "M");
-        tree9.addNode("L", "N");
-        tree9.addNode("L", "O");
-
-        LabelTree tree10("Tree10");
-        tree10.addNode("", "K");
-        tree10.addNode("K", "L");
-        tree10.addNode("K", "O");
-        tree10.addNode("O", "N");
-        tree10.addNode("O", "M");
-        verify(tree9, tree10, 4);
-        tree9.resetTree();
-        tree10.resetTree();
 
         // Test Case 6
         // Tree6 1
@@ -149,35 +107,6 @@ public:
         tree11.addNode("P", "R");
         tree11.addNode("Q", "S");
         tree11.addNode("Q", "T");
-
-        LabelTree tree12("Tree12");
-        tree12.addNode("", "P");
-        tree12.addNode("P", "Q");
-        tree12.addNode("P", "S");
-        tree12.addNode("S", "R");
-        tree12.addNode("S", "T");
-        verify(tree11, tree12, 4);
-        tree11.resetTree();
-        tree12.resetTree();
-
-        // Test Case 7
-        // Tree7 2
-        LabelTree tree13("Tree13");
-        tree13.addNode("", "U");
-        tree13.addNode("U", "V");
-        tree13.addNode("U", "W");
-        tree13.addNode("V", "X");
-        tree13.addNode("V", "Y");
-
-        LabelTree tree14("Tree14");
-        tree14.addNode("", "U");
-        tree14.addNode("U", "V");
-        tree14.addNode("U", "X");
-        tree14.addNode("X", "W");
-        tree14.addNode("W", "Y");
-        verify(tree13, tree14, 3);
-        tree13.resetTree();
-        tree14.resetTree();
 
         // Test Case 8
         // Tree8 2
@@ -195,8 +124,6 @@ public:
         tree16.addNode("C1", "B1");
         tree16.addNode("B1", "D1");
         verify(tree15, tree16, 3);
-        tree15.resetTree();
-        tree16.resetTree();
 
         // Test Case 9
         // Tree9 1
@@ -214,8 +141,6 @@ public:
         tree18.addNode("H1", "G1");
         tree18.addNode("H1", "I1");
         verify(tree17, tree18, 4);
-        tree17.resetTree();
-        tree18.resetTree();
 
         // Test Case 10
         // Tree10 3
@@ -233,8 +158,271 @@ public:
         tree20.addNode("N1", "M1");
         tree20.addNode("N1", "L1");
         verify(tree19, tree20, 4);
-        tree19.resetTree();
-        tree20.resetTree();
+
+        // Tree8A
+        LabelTree tree8A("Tree8A");
+        tree8A.addNode("", "F");
+        tree8A.addNode("F", "D");
+        tree8A.addNode("F", "E");
+        tree8A.addNode("D", "A");
+        tree8A.addNode("D", "C");
+        tree8A.addNode("C", "B");
+        tree8A.addNode("E", "G");
+        tree8A.addNode("E", "H");
+
+        // Tree8B
+        LabelTree tree8B("Tree8B");
+        tree8B.addNode("", "F");
+        tree8B.addNode("F", "C");
+        tree8B.addNode("F", "E");
+        tree8B.addNode("C", "D");
+        tree8B.addNode("D", "A");
+        tree8B.addNode("D", "B");
+        tree8B.addNode("E", "G");
+        tree8B.addNode("E", "H");
+        verify(tree8A, tree8B, 2);
+
+        LabelTree tree16A("Tree16A");
+        tree16A.addNode("", "F");
+        tree16A.addNode("F", "D");
+        tree16A.addNode("F", "E");
+        tree16A.addNode("D", "A");
+        tree16A.addNode("D", "C");
+        tree16A.addNode("C", "B");
+        tree16A.addNode("E", "G");
+        tree16A.addNode("E", "H");
+        tree16A.addNode("A", "I");
+        tree16A.addNode("A", "J");
+        tree16A.addNode("B", "K");
+        tree16A.addNode("B", "L");
+        tree16A.addNode("G", "M");
+        tree16A.addNode("G", "N");
+        tree16A.addNode("H", "O");
+        tree16A.addNode("H", "P");
+
+        // Tree16B
+        LabelTree tree16B("Tree16B");
+        tree16B.addNode("", "F");
+        tree16B.addNode("F", "C");
+        tree16B.addNode("F", "E");
+        tree16B.addNode("C", "D");
+        tree16B.addNode("D", "A");
+        tree16B.addNode("D", "B");
+        tree16B.addNode("E", "G");
+        tree16B.addNode("E", "H");
+        tree16B.addNode("A", "I");
+        tree16B.addNode("A", "J");
+        tree16B.addNode("B", "K");
+        tree16B.addNode("B", "L");
+        tree16B.addNode("G", "M");
+        tree16B.addNode("G", "N");
+        tree16B.addNode("H", "O");
+        tree16B.addNode("H", "P");
+        verify(tree16A, tree16B, 2);
+
+        // Tree32A
+        LabelTree tree32A("Tree32A");
+        tree32A.addNode("", "F");
+        tree32A.addNode("F", "D");
+        tree32A.addNode("F", "E");
+        tree32A.addNode("D", "A");
+        tree32A.addNode("D", "C");
+        tree32A.addNode("C", "B");
+        tree32A.addNode("E", "G");
+        tree32A.addNode("E", "H");
+        tree32A.addNode("A", "I");
+        tree32A.addNode("A", "J");
+        tree32A.addNode("B", "K");
+        tree32A.addNode("B", "L");
+        tree32A.addNode("G", "M");
+        tree32A.addNode("G", "N");
+        tree32A.addNode("H", "O");
+        tree32A.addNode("H", "P");
+        tree32A.addNode("I", "Q");
+        tree32A.addNode("I", "R");
+        tree32A.addNode("J", "S");
+        tree32A.addNode("J", "T");
+        tree32A.addNode("K", "U");
+        tree32A.addNode("K", "V");
+        tree32A.addNode("L", "W");
+        tree32A.addNode("L", "X");
+        tree32A.addNode("M", "Y");
+        tree32A.addNode("M", "Z");
+        tree32A.addNode("N", "8");
+        tree32A.addNode("N", "9");
+        tree32A.addNode("O", "2");
+        tree32A.addNode("O", "4");
+        tree32A.addNode("P", "3");
+        tree32A.addNode("P", "1");
+
+        // Tree32B
+        LabelTree tree32B("Tree32B");
+        tree32B.addNode("", "F");
+        tree32B.addNode("F", "C");
+        tree32B.addNode("F", "E");
+        tree32B.addNode("C", "D");
+        tree32B.addNode("D", "A");
+        tree32B.addNode("D", "B");
+        tree32B.addNode("E", "G");
+        tree32B.addNode("E", "H");
+        tree32B.addNode("A", "I");
+        tree32B.addNode("A", "J");
+        tree32B.addNode("B", "K");
+        tree32B.addNode("B", "L");
+        tree32B.addNode("G", "M");
+        tree32B.addNode("G", "N");
+        tree32B.addNode("H", "O");
+        tree32B.addNode("H", "P");
+        tree32B.addNode("I", "Q");
+        tree32B.addNode("I", "R");
+        tree32B.addNode("J", "S");
+        tree32B.addNode("J", "T");
+        tree32B.addNode("K", "U");
+        tree32B.addNode("K", "V");
+        tree32B.addNode("L", "W");
+        tree32B.addNode("L", "X");
+        tree32B.addNode("M", "Y");
+        tree32B.addNode("M", "Z");
+        tree32B.addNode("N", "8");
+        tree32B.addNode("N", "9");
+        tree32B.addNode("O", "1");
+        tree32B.addNode("O", "0");
+        tree32B.addNode("P", "9");
+        tree32B.addNode("P", "4");
+        verify(tree32A, tree32B, 6);
+
+        // Tree64A
+        LabelTree tree64A("Tree64A");
+        tree64A.addNode("", "F");
+        tree64A.addNode("F", "1");
+        tree64A.addNode("F", "E");
+        tree64A.addNode("1", "A");
+        tree64A.addNode("1", "C");
+        tree64A.addNode("C", "B");
+        tree64A.addNode("E", "G");
+        tree64A.addNode("E", "H");
+        tree64A.addNode("A", "I");
+        tree64A.addNode("A", "J");
+        tree64A.addNode("B", "K");
+        tree64A.addNode("B", "L");
+        tree64A.addNode("G", "M");
+        tree64A.addNode("G", "N");
+        tree64A.addNode("H", "O");
+        tree64A.addNode("H", "P");
+        tree64A.addNode("I", "Q");
+        tree64A.addNode("I", "R");
+        tree64A.addNode("J", "S");
+        tree64A.addNode("J", "T");
+        tree64A.addNode("K", "U");
+        tree64A.addNode("K", "V");
+        tree64A.addNode("L", "W");
+        tree64A.addNode("L", "X");
+        tree64A.addNode("M", "Y");
+        tree64A.addNode("M", "Z");
+        tree64A.addNode("N", "8");
+        tree64A.addNode("N", "9");
+        tree64A.addNode("O", "1");
+        tree64A.addNode("O", "0");
+        tree64A.addNode("P", "9");
+        tree64A.addNode("P", "4");
+        tree64A.addNode("Q", "A");
+        tree64A.addNode("Q", "B");
+        tree64A.addNode("R", "C");
+        tree64A.addNode("R", "D");
+        tree64A.addNode("S", "E");
+        tree64A.addNode("S", "F");
+        tree64A.addNode("T", "G");
+        tree64A.addNode("T", "H");
+        tree64A.addNode("U", "I");
+        tree64A.addNode("U", "J");
+        tree64A.addNode("V", "K");
+        tree64A.addNode("V", "L");
+        tree64A.addNode("W", "M");
+        tree64A.addNode("W", "N");
+        tree64A.addNode("X", "O");
+        tree64A.addNode("X", "P");
+        tree64A.addNode("Y", "Q");
+        tree64A.addNode("Y", "R");
+        tree64A.addNode("Z", "S");
+        tree64A.addNode("Z", "T");
+        tree64A.addNode("8", "U");
+        tree64A.addNode("8", "V");
+        tree64A.addNode("9", "W");
+        tree64A.addNode("9", "X");
+        tree64A.addNode("0", "Y");
+        tree64A.addNode("0", "Z");
+        tree64A.addNode("4", "1");
+        tree64A.addNode("4", "2");
+        tree64A.addNode("A", "3");
+        tree64A.addNode("A", "4");
+        tree64A.addNode("B", "5");
+        tree64A.addNode("B", "6");
+        tree64A.addNode("C", "7");
+        tree64A.addNode("C", "8");
+
+        LabelTree tree64B("Tree64B");
+        tree64B.addNode("", "F");
+        tree64B.addNode("F", "C");
+        tree64B.addNode("F", "E");
+        tree64B.addNode("C", "D");
+        tree64B.addNode("D", "A");
+        tree64B.addNode("D", "B");
+        tree64B.addNode("E", "G");
+        tree64B.addNode("E", "H");
+        tree64B.addNode("A", "I");
+        tree64B.addNode("A", "J");
+        tree64B.addNode("B", "K");
+        tree64B.addNode("B", "L");
+        tree64B.addNode("G", "M");
+        tree64B.addNode("G", "N");
+        tree64B.addNode("H", "O");
+        tree64B.addNode("H", "P");
+        tree64B.addNode("I", "Q");
+        tree64B.addNode("I", "R");
+        tree64B.addNode("J", "S");
+        tree64B.addNode("J", "T");
+        tree64B.addNode("K", "U");
+        tree64B.addNode("K", "V");
+        tree64B.addNode("L", "W");
+        tree64B.addNode("L", "X");
+        tree64B.addNode("M", "Y");
+        tree64B.addNode("M", "Z");
+        tree64B.addNode("N", "8");
+        tree64B.addNode("N", "9");
+        tree64B.addNode("O", "1");
+        tree64B.addNode("O", "0");
+        tree64B.addNode("P", "9");
+        tree64B.addNode("P", "4");
+        tree64B.addNode("Q", "A");
+        tree64B.addNode("Q", "B");
+        tree64B.addNode("R", "C");
+        tree64B.addNode("R", "D");
+        tree64B.addNode("S", "E");
+        tree64B.addNode("S", "F");
+        tree64B.addNode("T", "G");
+        tree64B.addNode("T", "H");
+        tree64B.addNode("U", "I");
+        tree64B.addNode("U", "J");
+        tree64B.addNode("V", "K");
+        tree64B.addNode("V", "L");
+        tree64B.addNode("W", "M");
+        tree64B.addNode("W", "N");
+        tree64B.addNode("X", "O");
+        tree64B.addNode("X", "P");
+        tree64B.addNode("Y", "Q");
+        tree64B.addNode("Y", "R");
+        tree64B.addNode("Z", "S");
+        tree64B.addNode("Z", "T");
+        tree64B.addNode("8", "U");
+        tree64B.addNode("8", "V");
+        tree64B.addNode("9", "W");
+        tree64B.addNode("9", "X");
+        tree64B.addNode("0", "Y");
+        tree64B.addNode("0", "Z");
+        tree64B.addNode("4", "1");
+        tree64B.addNode("4", "2");
+
+        verify(tree64A, tree64B, 8);
     }
 };
 
