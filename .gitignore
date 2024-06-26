@@ -12,6 +12,8 @@ desktop.ini
 *.user
 *.userosscache
 *.sln.docstates
+*.exe
+*.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
