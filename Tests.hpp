@@ -7,6 +7,7 @@
 #include <algorithm>
 #include "LabelTree.hpp"
 #include "TreeDistance.hpp"
+#include "KleinTreeDistance.hpp"
 
 using namespace std;
 
@@ -40,6 +41,27 @@ public:
         tree2.resetTree();
     }
 
+    void verifyKlein(LabelTree tree1, LabelTree tree2, int expectedDistance)
+    {
+        KleinTreeDistance ted;
+        int distance = ted.calculateTreeDistance(tree1, tree2);
+        if (distance == expectedDistance)
+        {
+            cout << "Test Passed(KLEIN)" << endl;
+            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
+                 << endl;
+        }
+        else
+        {
+            cout << "Test Failed(KLEIN)" << endl;
+            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
+                 << endl;
+        }
+
+        tree1.resetTree();
+        tree2.resetTree();
+    }
+
     void runTreeSamples()
     {
         TreeEditDistance ted;
@@ -60,6 +82,7 @@ public:
         tree2.addNode("E", "C");
         tree2.addNode("E", "D");
         verify(tree1, tree2, 4);
+        verifyKlein(tree1, tree2, 4);
 
         // Test Case 3
         // Tree3 4
@@ -81,6 +104,7 @@ public:
         tree6.addNode("Q", "S");
         tree6.addNode("R", "O");
         verify(tree5, tree6, 4);
+        verifyKlein(tree5, tree6, 4);
 
         // Test Case 4
         // Tree4 2
@@ -98,7 +122,8 @@ public:
         tree8.addNode("I", "H");
         tree8.addNode("H", "J");
         verify(tree7, tree8, 3);
-
+        verifyKlein(tree7, tree8, 3);
+        
         // Test Case 6
         // Tree6 1
         LabelTree tree11("Tree11");
@@ -124,6 +149,7 @@ public:
         tree16.addNode("C1", "B1");
         tree16.addNode("B1", "D1");
         verify(tree15, tree16, 3);
+        verifyKlein(tree15, tree16, 3);
 
         // Test Case 9
         // Tree9 1
@@ -141,6 +167,7 @@ public:
         tree18.addNode("H1", "G1");
         tree18.addNode("H1", "I1");
         verify(tree17, tree18, 4);
+        verifyKlein(tree17, tree18, 4);
 
         // Test Case 10
         // Tree10 3
@@ -181,6 +208,7 @@ public:
         tree8B.addNode("E", "G");
         tree8B.addNode("E", "H");
         verify(tree8A, tree8B, 2);
+        verifyKlein(tree8A, tree8B, 2);
 
         LabelTree tree16A("Tree16A");
         tree16A.addNode("", "F");
@@ -219,6 +247,7 @@ public:
         tree16B.addNode("H", "O");
         tree16B.addNode("H", "P");
         verify(tree16A, tree16B, 2);
+        verifyKlein(tree16A, tree16B, 2);
 
         // Tree32A
         LabelTree tree32A("Tree32A");
@@ -290,6 +319,7 @@ public:
         tree32B.addNode("P", "9");
         tree32B.addNode("P", "4");
         verify(tree32A, tree32B, 6);
+        verifyKlein(tree32A, tree32B, 6);
 
         // Tree64A
         LabelTree tree64A("Tree64A");
@@ -422,6 +452,7 @@ public:
         tree64B.addNode("4", "1");
         tree64B.addNode("4", "2");
         verify(tree64A, tree64B, 8);
+        verifyKlein(tree64A, tree64B, 8);
 
         LabelTree tree128A("Tree128A");
         tree128A.addNode("", "F");
@@ -645,6 +676,7 @@ public:
         tree128B.addNode("W", "9");
         tree128B.addNode("W", "0");
         verify(tree128A, tree128B, 16);
+        verifyKlein(tree128A, tree128B, 16);
     }
 };
 
