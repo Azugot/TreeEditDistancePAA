@@ -16,6 +16,10 @@ using namespace std;
 class TreeEditDistance
 {
 private:
+    int insertCost = 1;
+    int deleteCost = 1;
+    int substituteCost = 1;
+
     /**
      * Calculates the tree edit distance between two trees.
      *
@@ -24,70 +28,37 @@ private:
      * @return The tree edit distance between the two trees.
      */
 
-    int treeEditDist(Node *T1, Node *T2)
+    int treeEditDist(Node *T1, Node *T2, int insertCost, int deleteCost, int substituteCost)
     {
         auto start = chrono::high_resolution_clock::now();
         if (!T1)
-            return getSubtreeSize(T2);
+            return getSubtreeSize(T2) * insertCost;
         if (!T2)
-            return getSubtreeSize(T1);
+            return getSubtreeSize(T1) * deleteCost;
 
         vector<Node *> T1_nodes = getPostOrderNodes(T1);
-
         vector<Node *> T2_nodes = getPostOrderNodes(T2);
 
         int n1 = T1_nodes.size();
         int n2 = T2_nodes.size();
 
-        // cout << "n1: " << n1 << " n2: " << n2 << endl;
-
         vector<vector<int>> dp(n1 + 1, vector<int>(n2 + 1, 0));
 
         for (int i = 1; i <= n1; ++i)
-            dp[i][0] = dp[i - 1][0] + 1;
+            dp[i][0] = dp[i - 1][0] + deleteCost;
         for (int j = 1; j <= n2; ++j)
-            dp[0][j] = dp[0][j - 1] + 1;
-
-        // Debugging: Print post-order node labels
-        cout << "T1 post-order: ";
-        for (auto node : T1_nodes)
-        {
-            cout << node->getLabel() << " ";
-        }
-        cout << endl;
-
-        cout << "T2 post-order: ";
-        for (auto node : T2_nodes)
-        {
-            cout << node->getLabel() << " ";
-        }
-        cout << endl;
+            dp[0][j] = dp[0][j - 1] + insertCost;
 
         for (int i = 1; i <= n1; ++i)
         {
             for (int j = 1; j <= n2; ++j)
             {
-                int cost = (T1_nodes[i - 1]->getLabel() == T2_nodes[j - 1]->getLabel()) ? 0 : 1;
-                dp[i][j] = min({dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost});
+                int cost = (T1_nodes[i - 1]->getLabel() == T2_nodes[j - 1]->getLabel()) ? 0 : substituteCost;
+                dp[i][j] = min({dp[i - 1][j] + deleteCost, dp[i][j - 1] + insertCost, dp[i - 1][j - 1] + cost});
             }
         }
 
-        // Debugging: Print DP table
-        // cout << "DP table:" << endl;
-        // for (int i = 0; i <= n1; ++i)
-        //{
-        //    for (int j = 0; j <= n2; ++j)
-        //    {
-        //        cout << dp[i][j] << " ";
-        //    }
-        //    cout << endl;
-        //}
-        //
-
-        // Stop the clock
         chrono::high_resolution_clock::time_point end = chrono::high_resolution_clock::now();
-
-        // Calculate duration
         chrono::milliseconds duration = chrono::duration_cast<chrono::milliseconds>(end - start);
 
         cout << "Execution time: " << duration.count() << " milliseconds" << endl;
@@ -143,6 +114,66 @@ private:
 
 public:
     /**
+     * Sets the cost of inserting a node.
+     *
+     * @param cost The cost of inserting a node.
+     */
+    void setInsertCost(int cost)
+    {
+        insertCost = cost;
+    }
+
+    /**
+     * Gets the cost of inserting a node.
+     *
+     * @return The cost of inserting a node.
+     */
+    int getInsertCost() const
+    {
+        return insertCost;
+    }
+
+    /**
+     * Sets the cost of deleting a node.
+     *
+     * @param cost The cost of deleting a node.
+     */
+    void setDeleteCost(int cost)
+    {
+        deleteCost = cost;
+    }
+
+    /**
+     * Gets the cost of deleting a node.
+     *
+     * @return The cost of deleting a node.
+     */
+    int getDeleteCost() const
+    {
+        return deleteCost;
+    }
+
+    /**
+     * Sets the cost of substituting a node.
+     *
+     * @param cost The cost of substituting a node.
+     */
+    void setSubstituteCost(int cost)
+    {
+        substituteCost = cost;
+    }
+
+    /**
+     * Gets the cost of substituting a node.
+     *
+     * @return The cost of substituting a node.
+     */
+    int getSubstituteCost() const
+    {
+        return substituteCost;
+    }
+
+    /**
      * Computes the tree edit distance between two trees.
      *
      * @param tree1 The first tree.
@@ -151,7 +182,7 @@ public:
      */
     int calculateTreeDistance(LabelTree &tree1, LabelTree &tree2)
     {
-        return treeEditDist(tree1.getRoot(), tree2.getRoot());
+        return treeEditDist(tree1.getRoot(), tree2.getRoot(), insertCost, deleteCost, substituteCost);
     }
 };
 
