@@ -26,15 +26,14 @@ public:
         int distance = ted.calculateTreeDistance(tree1, tree2);
         if (distance == expectedDistance)
         {
+
+            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n";
             cout << "Test Passed" << endl;
-            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
-                 << endl;
         }
         else
         {
+            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n";
             cout << "Test Failed" << endl;
-            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
-                 << endl;
         }
 
         tree1.resetTree();
@@ -47,14 +46,16 @@ public:
         int distance = ted.calculateTreeDistance(tree1, tree2);
         if (distance == expectedDistance)
         {
-            cout << "Test Passed(KLEIN)" << endl;
-            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
+
+            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n";
+            cout << "Test Passed(KLEIN)" << endl
                  << endl;
         }
         else
         {
-            cout << "Test Failed(KLEIN)" << endl;
-            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n"
+
+            cout << "Given/Expet: " << distance << "/" << expectedDistance << "\n";
+            cout << "Test Failed(KLEIN)" << endl
                  << endl;
         }
 
@@ -123,7 +124,7 @@ public:
         tree8.addNode("H", "J");
         verify(tree7, tree8, 3);
         verifyKlein(tree7, tree8, 3);
-        
+
         // Test Case 6
         // Tree6 1
         LabelTree tree11("Tree11");

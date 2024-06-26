@@ -85,6 +85,7 @@ private:
         chrono::nanoseconds duration = chrono::duration_cast<chrono::nanoseconds>(end - start);
 
         cout << "Execution time: " << duration.count() << " nanoseconds" << endl;
+        cout << "Operation count: " << operationCount << endl;
         return dp[n1][n2];
     }
 
