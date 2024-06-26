@@ -68,9 +68,9 @@ private:
         }
 
         chrono::high_resolution_clock::time_point end = chrono::high_resolution_clock::now();
-        chrono::milliseconds duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+        chrono::nanoseconds duration = chrono::duration_cast<chrono::nanoseconds>(end - start);
 
-        cout << "Execution time: " << duration.count() << " milliseconds" << endl;
+        cout << "Execution time: " << duration.count() << " nanoseconds" << endl;
         return dp[n1][n2];
     }
 
