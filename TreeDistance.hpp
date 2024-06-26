@@ -42,6 +42,15 @@ private:
         vector<Node *> T1_nodes = getPostOrderNodes(T1);
         vector<Node *> T2_nodes = getPostOrderNodes(T2);
 
+        // cout << "T1_nodes: " << T1_nodes.size() << endl;
+        //  for (auto node : T1_nodes)
+        //      cout << node->getLabel() << " ";
+        //  cout << endl;
+        // cout << "T2_nodes: " << T2_nodes.size() << endl;
+        //  for (auto node : T2_nodes)
+        //      cout << node->getLabel() << " ";
+        //  cout << endl;
+
         int n1 = T1_nodes.size();
         int n2 = T2_nodes.size();
 
