@@ -1,9 +1,6 @@
-// File: TreeEditDistance.hpp
-
 #ifndef TreeDistance_hpp
 #define TreeDistance_hpp
 
-#include <chrono>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -19,6 +16,7 @@ private:
     int insertCost = 1;
     int deleteCost = 1;
     int substituteCost = 1;
+    long long operationCount = 0;
 
     /**
      * Calculates the tree edit distance between two trees.
@@ -27,14 +25,19 @@ private:
      * @param T2 Pointer to the root node of the second tree.
      * @return The tree edit distance between the two trees.
      */
-
     int treeEditDist(Node *T1, Node *T2, int insertCost, int deleteCost, int substituteCost)
     {
-        auto start = chrono::high_resolution_clock::now();
+        operationCount = 0; // Reset operation count
         if (!T1)
+        {
+            operationCount++;
             return getSubtreeSize(T2) * insertCost;
+        }
         if (!T2)
+        {
+            operationCount++;
             return getSubtreeSize(T1) * deleteCost;
+        }
 
         vector<Node *> T1_nodes = getPostOrderNodes(T1);
         vector<Node *> T2_nodes = getPostOrderNodes(T2);
@@ -45,9 +48,15 @@ private:
         vector<vector<int>> dp(n1 + 1, vector<int>(n2 + 1, 0));
 
         for (int i = 1; i <= n1; ++i)
+        {
             dp[i][0] = dp[i - 1][0] + deleteCost;
+            operationCount++;
+        }
         for (int j = 1; j <= n2; ++j)
+        {
             dp[0][j] = dp[0][j - 1] + insertCost;
+            operationCount++;
+        }
 
         for (int i = 1; i <= n1; ++i)
         {
@@ -55,13 +64,11 @@ private:
             {
                 int cost = (T1_nodes[i - 1]->getLabel() == T2_nodes[j - 1]->getLabel()) ? 0 : substituteCost;
                 dp[i][j] = min({dp[i - 1][j] + deleteCost, dp[i][j - 1] + insertCost, dp[i - 1][j - 1] + cost});
+                operationCount++;
             }
         }
 
-        chrono::high_resolution_clock::time_point end = chrono::high_resolution_clock::now();
-        chrono::milliseconds duration = chrono::duration_cast<chrono::milliseconds>(end - start);
-
-        cout << "Execution time: " << duration.count() << " milliseconds" << endl;
+        cout << "Number of operations: " << operationCount << endl;
         return dp[n1][n2];
     }
 
@@ -73,6 +80,7 @@ private:
      */
     int getSubtreeSize(Node *node)
     {
+        operationCount++;
         if (!node)
             return 0;
         int size = 1;
@@ -110,6 +118,7 @@ private:
             postOrder(child, nodes);
         }
         nodes.push_back(node);
+        operationCount++;
     }
 
 public:
